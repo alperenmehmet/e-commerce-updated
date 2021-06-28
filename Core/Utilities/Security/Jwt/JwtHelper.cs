@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Core.Utilities.Security.Jwt
 {
-    public class JwtHelper:ITokenHelper
+    public class JwtHelper : ITokenHelper
     {
         public IConfiguration Configuration { get; }
         private TokenOptions _tokenOptions;
@@ -21,7 +21,7 @@ namespace Core.Utilities.Security.Jwt
         {
             Configuration = configuration;
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            
+
         }
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
         {
