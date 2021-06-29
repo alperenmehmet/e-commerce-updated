@@ -1,7 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework.Contexts;
-using Entities.Concrete;
+using Entities.ScaffoldingConcrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfOrderDal : EfEntityRepositoryBase<Order, ApplicationDbContext>, IOrderDal
+    public class EfOrderDal : EfEntityRepositoryBase<Order, ECommerceDbContext>, IOrderDal
     {
     }
 }

@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
+#nullable disable
 
 namespace Core.Entities.Concrete
 {
-    public class OperationClaim : IEntity
+    public partial class OperationClaim
     {
-        public int Id { get; set; }
+        public OperationClaim()
+        {
+            UserOperationClaims = new HashSet<UserOperationClaim>();
+        }
+
+        public int OperationClaimId { get; set; }
         public string Name { get; set; }
+
+        public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }

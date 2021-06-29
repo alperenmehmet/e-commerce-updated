@@ -6,7 +6,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using Entities.Concrete;
+using Entities.ScaffoldingConcrete;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Business.Concrete
                 return result;
             }
             productImage.ImagePath = FileHelper.Add(file);
-            productImage.Date = DateTime.Now;
+            productImage.UploadDate = DateTime.Now;
             _productImageDal.Add(productImage);
             return new SuccessResult();
         }
@@ -55,7 +55,7 @@ namespace Business.Concrete
                 return result;
             }
             productImage.ImagePath = FileHelper.Update(_productImageDal.Get(p => p.ProductId == productImage.ProductImageId).ImagePath, file);
-            productImage.Date = DateTime.Now;
+            productImage.UploadDate = DateTime.Now;
             _productImageDal.Update(productImage);
             return new SuccessResult();
         }
@@ -95,7 +95,7 @@ namespace Business.Concrete
             {
                 return new List<ProductImage>
                 {
-                    new ProductImage {ProductId=id, ImagePath=path, Date =DateTime.Now}
+                    new ProductImage {ProductId=id, ImagePath=path, UploadDate =DateTime.Now}
                 };
             }
             return _productImageDal.GetAll(p => p.ProductId == id);

@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, ApplicationDbContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, ECommerceDbContext>, IUserDal
     {
         public List<OperationClaim> GetClaims(User user)
         {
-            using (var context = new ApplicationDbContext())
+            using (var context = new ECommerceDbContext())
             {
                 var result = from operationClaim in context.OperationClaims
-                             join userOperationClaim in context.UserOperationClaim
-                             on operationClaim.Id equals userOperationClaim.OperationClaimId
-                             where userOperationClaim.UserId == user.Id
+                             join userOperationClaim in context.UserOperationClaims
+                             on operationClaim.OperationClaimId equals userOperationClaim.OperationClaimId
+                             where userOperationClaim.UserId == user.UserId
                              select new OperationClaim 
                              { 
-                                 Id = operationClaim.Id,
+                                 OperationClaimId = operationClaim.OperationClaimId,
                                  Name = operationClaim.Name
                              };
                 return result.ToList();

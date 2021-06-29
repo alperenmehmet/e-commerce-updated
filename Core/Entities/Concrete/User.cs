@@ -1,13 +1,19 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Core.Entities;
+
+#nullable disable
 
 namespace Core.Entities.Concrete
 {
-    public class User:IEntity
+    public partial class User : IEntity
     {
-        public int Id { get; set; }
+        public User()
+        {
+            UserOperationClaims = new HashSet<UserOperationClaim>();
+        }
+
+        public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -15,6 +21,7 @@ namespace Core.Entities.Concrete
         public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
 
-
+        //public virtual Customer UserNavigation { get; set; }
+        public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }
